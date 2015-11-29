@@ -12,26 +12,25 @@ public class DataMiner {
 	   String train = "irisTrainData.arff";
 	   String test = "irisTestData.arff";
 	   String total = "iris.arff";
-	   //j48Model(train, test, total);
+	   j48Model(train, test, total);
 	   
 	   String conTrain = "Contraceptive Data Train.arff";
 	   String conTest = "Contraceptive Data Test.arff";
 	   String conTotal = "Contraceptive Data.arff";
-	   //j48Model(conTrain, conTest, conTotal);
+	   j48Model(conTrain, conTest, conTotal);
 	   
-	   AprioriModel(conTrain,conTest,conTotal);
-	   AprioriModel(train, test, total);
+	   PARTModel(conTrain,conTest,conTotal);
+	   PARTModel(train, test, total);
 	   	   
 
 	}
 	
 	
-	public static void AprioriModel(String train, String test, String total) {
+	public static void PARTModel(String train, String test, String total) {
 		
 		  Instances trainData = null;
 		  Instances testData = null;
 		  Instances totalData = null;
-		 // Apriori apri = new Apriori();
 		  PART pa = new PART();
 		  
 		try {
