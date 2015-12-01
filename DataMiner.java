@@ -1,5 +1,7 @@
 import java.util.Random;
+
 import weka.classifiers.Evaluation;
+import weka.classifiers.rules.JRip;
 import weka.classifiers.rules.PART;
 import weka.classifiers.trees.J48;
 import weka.core.Instance;
@@ -13,15 +15,17 @@ public class DataMiner {
 	   String train = "irisTrainData.arff";
 	   String test = "irisTestData.arff";
 	   String total = "iris.arff";
-	   j48Model(train, test, total);
+	  // j48Model(train, test, total);
 	   
 	   String conTrain = "Contraceptive Data Train.arff";
 	   String conTest = "Contraceptive Data Test.arff";
 	   String conTotal = "Contraceptive Data.arff";
-	   j48Model(conTrain, conTest, conTotal);
+	  j48Model(conTrain, conTest, conTotal);
 	   
-	   PARTModel(conTrain,conTest,conTotal);
-	   PARTModel(train, test, total);
+	  // PARTModel(conTrain,conTest,conTotal);
+	  // PARTModel(train, test, total);
+	   JRipModel(train, test, total);
+	   JRipModel(conTrain, conTest, conTotal);
 
 	}
 	
@@ -74,6 +78,46 @@ public class DataMiner {
 		
 	}
 	
+	public static void JRipModel(String train, String test, String total) {
+		JRip rip = new JRip();
+		
+		Instances trainData = null;
+		Instances testData = null;
+		Instances totalData = null;
+		  
+		try {
+			
+			DataSource source = new DataSource(train);
+	    	trainData = source.getDataSet();
+			int num_Attributes = trainData.numAttributes() - 1;
+		    trainData.setClassIndex(num_Attributes);
+	
+			rip.buildClassifier(trainData);
+			Evaluation eval = new Evaluation(trainData);
+			
+		    //Read the test data
+		    DataSource testSource = new DataSource(test);
+		    testData = testSource.getDataSet();
+		    testData.setClassIndex(num_Attributes);
+			//System.out.println(rip);
+			
+		    //Evaluate the test data using the PART algorithm
+		    eval.evaluateModel(rip, testData);
+		   // System.out.println(pa);
+		    System.out.println(eval.toSummaryString("\nJRip Results\n======\n", false));
+		   
+		    
+		    eval.crossValidateModel(rip, testData, 10, new Random());
+		   // System.out.println(eval.toSummaryString("\nResults\n======\n", false));
+			   		 
+		//Catches various errors that may come up during the reading of the file  
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+
+	}
+	
 	
 	public static void PARTModel(String train, String test, String total) {
 		
@@ -95,7 +139,7 @@ public class DataMiner {
 		    DataSource testSource = new DataSource(test);
 		    testData = testSource.getDataSet();
 		    testData.setClassIndex(num_Attributes);
-			//System.out.println(pa);
+			System.out.println(pa);
 			
 		    //Evaluate the test data using the PART algorithm
 		    eval.evaluateModel(pa, testData);
@@ -162,7 +206,7 @@ public class DataMiner {
 			    System.out.println(eval.toMatrixString());
 			    System.out.println(eval.toSummaryString("\nJ48 Results\n======\n", false));
 			    
-			    //System.out.println(j);
+			    System.out.println(j);
 			    //System.out.println(testData.instance(0));
 			    
 			    
