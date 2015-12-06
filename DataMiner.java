@@ -7,7 +7,10 @@ import weka.classifiers.trees.J48;
 import weka.core.Instance;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
-
+/**
+ * Written by Connor Hagan (cwh7yq) and Glenna Manns (gmm6jd)
+ * This program takes arff data sets and analyzes them using either J48 or JRip, depending on the user preference
+ */
 public class DataMiner {
 	
 	
