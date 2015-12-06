@@ -26,6 +26,17 @@ public class DataMiner {
 	  // PARTModel(train, test, total);
 	   JRipModel(train, test, total);
 	   JRipModel(conTrain, conTest, conTotal);
+	   
+	  System.out.print("Would you like to mine with J48Model or PARTModel?");
+	   Scanner decision = new Scanner(System.in);
+	   if (decision.next().toLowerCase().contains("j48")) {
+	   			j48Model(train, test, total);
+	   			j48Model(conTrain, conTest, conTotal);
+	   		}
+	   		else {
+	   			PARTModel(conTrain,conTest,conTotal);
+	   			PARTModel(train, test, total);
+	   		}
 
 	}
 	
