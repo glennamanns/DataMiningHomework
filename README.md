@@ -1,1 +1,5 @@
-# DataMiningHomework
+# DataMiningHomework by Connor Hagan and Glenna Manns
+
+There are six data files, but only four are used in this program. "Contraceptive Data Test.arff" and "Contraceptive Data Train.arff" contain 20% and 80% of the contraception data set, respectively. "IrisTestData.arff" and "IrisTrainData.arff" contain 20% and 80% of the iris data set, respectively. We included the files containing the full data sets for completeness.
+
+"DataMiner.java" contains our program. It first asks the user to indicate which algorithm they would like to use to analyze the data. If the user types "j48," then the J48 algorithm will be run. Typing anything else will cause the JRip algorithm to run. The program outputs a great deal of information to the console. First it lists a summary of the results, then it lists the rules the algorithm produced, and then it lists the entire testing data set. The print out of the testing data set lists the attributes of each instance, including the actual class, followed by "---" and then the predicted class.
